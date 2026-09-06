@@ -1,0 +1,1619 @@
+[
+  {
+    "id": "merge",
+    "name": "合并 PDF",
+    "subtitle": "将多个文件，整理成一份。",
+    "icon": "square.stack.3d.up",
+    "category": "arrange",
+    "color": "#E87354",
+    "options": [
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "按文件队列的顺序合并。使用上下箭头调整顺序，保留原文件。",
+    "many": true
+  },
+  {
+    "id": "split",
+    "name": "拆分 PDF",
+    "subtitle": "按页面、区间或份数拆分。",
+    "icon": "scissors",
+    "category": "arrange",
+    "color": "#E6A348",
+    "options": [
+      {
+        "key": "splitMode",
+        "label": "拆分方式",
+        "default": "each",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "each",
+            "label": "每页一个文件"
+          },
+          {
+            "value": "ranges",
+            "label": "每个区间一个文件"
+          },
+          {
+            "value": "size",
+            "label": "每 N 页一个文件"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "groupSize",
+        "label": "每份页数",
+        "default": "1",
+        "kind": "number",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "",
+    "many": true
+  },
+  {
+    "id": "compress",
+    "name": "压缩 PDF",
+    "subtitle": "减小体积，让分享更轻松。",
+    "icon": "arrow.down.right.and.arrow.up.left",
+    "category": "optimize",
+    "color": "#67A481",
+    "options": [
+      {
+        "key": "compression",
+        "label": "压缩程度",
+        "default": "balanced",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "lossless",
+            "label": "无损优化"
+          },
+          {
+            "value": "balanced",
+            "label": "推荐压缩"
+          },
+          {
+            "value": "strong",
+            "label": "更小体积"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "推荐和强力模式会重新压缩图片；文字保持可搜索。压缩效果取决于源文件。",
+    "many": true
+  },
+  {
+    "id": "pdfToWord",
+    "name": "PDF 转 Word",
+    "subtitle": "重新获得可编辑的文档。",
+    "icon": "doc.text",
+    "category": "convert",
+    "color": "#5187CC",
+    "options": [
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "useOCR",
+        "label": "自动识别扫描页",
+        "default": "false",
+        "kind": "toggle",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "生成 DOCX，重建段落和表格。复杂版式转换后请校对。",
+    "many": true
+  },
+  {
+    "id": "pdfToPPT",
+    "name": "PDF 转 PowerPoint",
+    "subtitle": "将页面变成演示文稿。",
+    "icon": "rectangle.on.rectangle",
+    "category": "convert",
+    "color": "#D28350",
+    "options": [
+      {
+        "key": "pptMode",
+        "label": "转换方式",
+        "default": "editable",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "editable",
+            "label": "重建可编辑文字"
+          },
+          {
+            "value": "image",
+            "label": "保留整页外观"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "useOCR",
+        "label": "自动识别扫描页",
+        "default": "false",
+        "kind": "toggle",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "",
+    "many": true
+  },
+  {
+    "id": "pdfToExcel",
+    "name": "PDF 转 Excel",
+    "subtitle": "提取表格，让数据可用。",
+    "icon": "tablecells",
+    "category": "convert",
+    "color": "#549F77",
+    "options": [
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "useOCR",
+        "label": "自动识别扫描页",
+        "default": "false",
+        "kind": "toggle",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "每个表格生成独立工作表；没有表格的页面按文字行提取。",
+    "many": true
+  },
+  {
+    "id": "wordToPDF",
+    "name": "Word 转 PDF",
+    "subtitle": "稳定呈现每一段文字。",
+    "icon": "doc.text.fill",
+    "category": "convert",
+    "color": "#5187CC",
+    "options": [],
+    "extensions": [
+      "doc",
+      "docx",
+      "odt",
+      "rtf"
+    ],
+    "hint": "",
+    "many": true
+  },
+  {
+    "id": "pptToPDF",
+    "name": "PowerPoint 转 PDF",
+    "subtitle": "让幻灯片随时可读。",
+    "icon": "rectangle.on.rectangle.angled",
+    "category": "convert",
+    "color": "#D28350",
+    "options": [],
+    "extensions": [
+      "ppt",
+      "pptx",
+      "odp"
+    ],
+    "hint": "",
+    "many": true
+  },
+  {
+    "id": "excelToPDF",
+    "name": "Excel 转 PDF",
+    "subtitle": "把工作表导出为 PDF。",
+    "icon": "tablecells.fill",
+    "category": "convert",
+    "color": "#549F77",
+    "options": [],
+    "extensions": [
+      "xls",
+      "xlsx",
+      "ods",
+      "csv"
+    ],
+    "hint": "使用工作簿中的打印区域和页面设置导出。",
+    "many": true
+  },
+  {
+    "id": "edit",
+    "name": "编辑 PDF",
+    "subtitle": "添加文字、图片和批注。",
+    "icon": "pencil.and.outline",
+    "category": "edit",
+    "color": "#8973BE",
+    "options": [
+      {
+        "key": "editMode",
+        "label": "编辑方式",
+        "default": "text",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "text",
+            "label": "添加文字"
+          },
+          {
+            "value": "image",
+            "label": "添加图片"
+          },
+          {
+            "value": "rectangle",
+            "label": "矩形"
+          },
+          {
+            "value": "highlight",
+            "label": "高亮区域"
+          },
+          {
+            "value": "ink",
+            "label": "手绘笔迹"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "text",
+        "label": "文字内容",
+        "default": "",
+        "kind": "multiline",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "imagePath",
+        "label": "选择图片",
+        "default": "",
+        "kind": "file",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "fontSize",
+        "label": "字号（pt）",
+        "default": "20",
+        "kind": "number",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "color",
+        "label": "颜色",
+        "default": "#334155",
+        "kind": "color",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "在预览上拖动框选放置区域；手绘模式直接拖动书写。可连续添加多个区域。",
+    "many": true
+  },
+  {
+    "id": "pdfToImage",
+    "name": "PDF 转 JPG",
+    "subtitle": "逐页导出，或提取图片。",
+    "icon": "photo.on.rectangle",
+    "category": "convert",
+    "color": "#D2A641",
+    "options": [
+      {
+        "key": "imageMode",
+        "label": "导出内容",
+        "default": "pages",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "pages",
+            "label": "每页转换为图片"
+          },
+          {
+            "value": "extract",
+            "label": "提取嵌入图片"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "imageFormat",
+        "label": "图片格式",
+        "default": "jpg",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "jpg",
+            "label": "JPG"
+          },
+          {
+            "value": "png",
+            "label": "PNG"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "dpi",
+        "label": "分辨率（DPI）",
+        "default": "150",
+        "kind": "number",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "",
+    "many": true
+  },
+  {
+    "id": "imageToPDF",
+    "name": "JPG 转 PDF",
+    "subtitle": "图片按你的方式组合。",
+    "icon": "photo.stack",
+    "category": "convert",
+    "color": "#D2A641",
+    "options": [
+      {
+        "key": "paper",
+        "label": "纸张",
+        "default": "a4",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "a4",
+            "label": "A4"
+          },
+          {
+            "value": "original",
+            "label": "跟随图片尺寸"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "orientation",
+        "label": "方向",
+        "default": "portrait",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "portrait",
+            "label": "纵向"
+          },
+          {
+            "value": "landscape",
+            "label": "横向"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "margin",
+        "label": "页边距（pt）",
+        "default": "20",
+        "kind": "number",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "jpg",
+      "jpeg",
+      "png",
+      "tiff",
+      "tif",
+      "bmp",
+      "webp"
+    ],
+    "hint": "支持 JPG、PNG、TIFF、WebP 等格式，自动校正照片方向。",
+    "many": true
+  },
+  {
+    "id": "sign",
+    "name": "PDF 签名",
+    "subtitle": "手写、图片或证书签署。",
+    "icon": "signature",
+    "category": "security",
+    "color": "#467CB3",
+    "options": [
+      {
+        "key": "signMode",
+        "label": "签名方式",
+        "default": "visual",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "visual",
+            "label": "签名文字或图片"
+          },
+          {
+            "value": "certificate",
+            "label": "PKCS#12 数字签名"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "editMode",
+        "label": "落笔方式",
+        "default": "text",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "text",
+            "label": "框选放置"
+          },
+          {
+            "value": "ink",
+            "label": "在页面上手写"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "text",
+        "label": "签名文字",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "imagePath",
+        "label": "选择图片",
+        "default": "",
+        "kind": "file",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "fontSize",
+        "label": "字号（pt）",
+        "default": "20",
+        "kind": "number",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "certificate",
+        "label": "签名证书（.p12 / .pfx）",
+        "default": "",
+        "kind": "file",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "certPassword",
+        "label": "证书密码",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "reason",
+        "label": "签名原因",
+        "default": "Document approval",
+        "kind": "text",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "本地签名与证书签名。远程邀请、身份验证和可信时间戳不包含在离线签署中。",
+    "many": true
+  },
+  {
+    "id": "watermark",
+    "name": "添加水印",
+    "subtitle": "为文档添上专属标识。",
+    "icon": "drop",
+    "category": "edit",
+    "color": "#9078B6",
+    "options": [
+      {
+        "key": "text",
+        "label": "文字内容",
+        "default": "",
+        "kind": "multiline",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "imagePath",
+        "label": "选择图片",
+        "default": "",
+        "kind": "file",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "position",
+        "label": "位置",
+        "default": "center",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "top",
+            "label": "顶部"
+          },
+          {
+            "value": "center",
+            "label": "居中"
+          },
+          {
+            "value": "bottom",
+            "label": "底部"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "opacity",
+        "label": "透明度（0.01–1）",
+        "default": ".22",
+        "kind": "number",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "fontSize",
+        "label": "字号（pt）",
+        "default": "36",
+        "kind": "number",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "color",
+        "label": "文字颜色",
+        "default": "#334155",
+        "kind": "color",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "",
+    "many": true
+  },
+  {
+    "id": "rotate",
+    "name": "旋转 PDF",
+    "subtitle": "让每一页回到正确方向。",
+    "icon": "rotate.right",
+    "category": "arrange",
+    "color": "#83A8BD",
+    "options": [
+      {
+        "key": "rotation",
+        "label": "旋转角度",
+        "default": "90",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "90",
+            "label": "顺时针 90°"
+          },
+          {
+            "value": "180",
+            "label": "180°"
+          },
+          {
+            "value": "270",
+            "label": "逆时针 90°"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "",
+    "many": true
+  },
+  {
+    "id": "htmlToPDF",
+    "name": "HTML 转 PDF",
+    "subtitle": "把网页保存在本机。",
+    "icon": "globe",
+    "category": "convert",
+    "color": "#648EA4",
+    "options": [
+      {
+        "key": "url",
+        "label": "网页地址",
+        "default": "https://example.com",
+        "kind": "text",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "paper",
+        "label": "纸张",
+        "default": "a4",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "a4",
+            "label": "A4"
+          },
+          {
+            "value": "letter",
+            "label": "Letter"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "landscape",
+        "label": "横向页面",
+        "default": "false",
+        "kind": "toggle",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "html",
+      "htm"
+    ],
+    "hint": "输入网页 URL 或选择 HTML 文件。网页资源按需联网加载，输出自动分页。",
+    "many": false
+  },
+  {
+    "id": "unlock",
+    "name": "PDF 解锁",
+    "subtitle": "移除已知密码的保护。",
+    "icon": "lock.open",
+    "category": "security",
+    "color": "#70A9A3",
+    "options": [
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "加密文件需要输入正确的打开密码；不会猜测或破解密码。",
+    "many": true
+  },
+  {
+    "id": "encrypt",
+    "name": "PDF 加密",
+    "subtitle": "用密码保护重要文件。",
+    "icon": "lock.shield",
+    "category": "security",
+    "color": "#70A9A3",
+    "options": [
+      {
+        "key": "newPassword",
+        "label": "新的打开密码",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "allowPrint",
+        "label": "允许打印",
+        "default": "true",
+        "kind": "toggle",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "allowCopy",
+        "label": "允许复制文字",
+        "default": "false",
+        "kind": "toggle",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "使用 AES-256 加密。请妥善保管密码，HiPDF 不保存文档密码。",
+    "many": true
+  },
+  {
+    "id": "organize",
+    "name": "排列 PDF",
+    "subtitle": "调整页序，重新组织内容。",
+    "icon": "square.grid.2x2",
+    "category": "arrange",
+    "color": "#73A8A1",
+    "options": [
+      {
+        "key": "pages",
+        "label": "页面顺序",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "例如 3,1,2,2：支持重复页面；留空保留原顺序。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "按点击缩略图的顺序生成页序，也可以手动输入。可先合并多个文件再排列。",
+    "many": true
+  },
+  {
+    "id": "pdfa",
+    "name": "PDF 转 PDF/A",
+    "subtitle": "为长期归档准备文档。",
+    "icon": "archivebox",
+    "category": "optimize",
+    "color": "#879493",
+    "options": [
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "按 PDF/A-2b 导出。正式归档前请用 veraPDF 对实际输出独立校验。",
+    "many": true
+  },
+  {
+    "id": "repair",
+    "name": "修复 PDF",
+    "subtitle": "重建可恢复的文件结构。",
+    "icon": "wrench.and.screwdriver",
+    "category": "optimize",
+    "color": "#BC8678",
+    "options": [
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "重建可读取对象与交叉引用。损坏严重或已经缺失的内容无法保证恢复。",
+    "many": true
+  },
+  {
+    "id": "numbers",
+    "name": "添加页码",
+    "subtitle": "让长文档更容易查阅。",
+    "icon": "number.square",
+    "category": "edit",
+    "color": "#7CA2A9",
+    "options": [
+      {
+        "key": "text",
+        "label": "页码格式",
+        "default": "{page} / {total}",
+        "kind": "text",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "startNumber",
+        "label": "起始页码",
+        "default": "1",
+        "kind": "number",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "position",
+        "label": "位置",
+        "default": "bottom",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "top",
+            "label": "顶部"
+          },
+          {
+            "value": "bottom",
+            "label": "底部"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "fontSize",
+        "label": "字号（pt）",
+        "default": "12",
+        "kind": "number",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "{page} 表示当前编号，{total} 表示所选页数。",
+    "many": true
+  },
+  {
+    "id": "scan",
+    "name": "扫描为 PDF",
+    "subtitle": "连接扫描仪，或导入照片。",
+    "icon": "scanner",
+    "category": "arrange",
+    "color": "#69A398",
+    "options": [
+      {
+        "key": "scanMode",
+        "label": "图像处理",
+        "default": "color",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "color",
+            "label": "彩色"
+          },
+          {
+            "value": "gray",
+            "label": "灰度增强"
+          },
+          {
+            "value": "bw",
+            "label": "黑白文档"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "paper",
+        "label": "纸张",
+        "default": "a4",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "a4",
+            "label": "A4"
+          },
+          {
+            "value": "original",
+            "label": "跟随图片"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "margin",
+        "label": "页边距（pt）",
+        "default": "15",
+        "kind": "number",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "jpg",
+      "jpeg",
+      "png",
+      "tiff",
+      "tif",
+      "bmp",
+      "webp"
+    ],
+    "hint": "支持 macOS 识别的扫描仪；也可导入 iPhone 扫描图片。",
+    "many": true
+  },
+  {
+    "id": "ocr",
+    "name": "OCR 文字识别",
+    "subtitle": "让扫描件可搜索、可复制。",
+    "icon": "text.viewfinder",
+    "category": "optimize",
+    "color": "#659F93",
+    "options": [
+      {
+        "key": "ocrLanguages",
+        "label": "识别语言",
+        "default": "zh-Hans,en-US",
+        "kind": "text",
+        "choices": [],
+        "help": "以逗号分隔，例如 zh-Hans,en-US、ja-JP。"
+      },
+      {
+        "key": "forceOCR",
+        "label": "对已有文字的页面也识别",
+        "default": "false",
+        "kind": "toggle",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "使用 macOS Vision 离线识别中英文。文字层叠加在原始页面上。",
+    "many": true
+  },
+  {
+    "id": "compare",
+    "name": "比较 PDF",
+    "subtitle": "并排查看，找出版本变化。",
+    "icon": "rectangle.split.2x1",
+    "category": "security",
+    "color": "#718BB2",
+    "options": [
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "请选择两个文件。输出并排 PDF 和逐行文字差异报告。",
+    "many": true
+  },
+  {
+    "id": "redact",
+    "name": "PDF 标记密文",
+    "subtitle": "永久删除敏感文字和区域。",
+    "icon": "eye.slash",
+    "category": "security",
+    "color": "#A47B9E",
+    "options": [
+      {
+        "key": "terms",
+        "label": "需要删除的文字（每行一项）",
+        "default": "",
+        "kind": "multiline",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "在预览上框选区域，或填写需删除的文字。会删除真实内容并清理附件、元数据及隐藏信息，另存为新文件。",
+    "many": true
+  },
+  {
+    "id": "crop",
+    "name": "裁剪 PDF",
+    "subtitle": "保留你需要的页面区域。",
+    "icon": "crop",
+    "category": "edit",
+    "color": "#967BBA",
+    "options": [
+      {
+        "key": "cropMargin",
+        "label": "四边裁剪量（pt）",
+        "default": "20",
+        "kind": "number",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "applyAll",
+        "label": "将最后选区应用到所有所选页面",
+        "default": "true",
+        "kind": "toggle",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "在预览上拖动选择保留区域；未框选时使用四边裁剪量。裁剪只改变可见范围。",
+    "many": true
+  },
+  {
+    "id": "forms",
+    "name": "PDF 表单",
+    "subtitle": "创建字段，也能直接填写。",
+    "icon": "list.bullet.rectangle",
+    "category": "edit",
+    "color": "#779790",
+    "options": [
+      {
+        "key": "formMode",
+        "label": "操作",
+        "default": "fill",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "fill",
+            "label": "填写已有表单"
+          },
+          {
+            "value": "create",
+            "label": "创建字段"
+          },
+          {
+            "value": "detect",
+            "label": "自动检测边框"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "fieldName",
+        "label": "新字段名称",
+        "default": "字段",
+        "kind": "text",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "fieldType",
+        "label": "字段类型",
+        "default": "text",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "text",
+            "label": "文本框"
+          },
+          {
+            "value": "checkbox",
+            "label": "复选框"
+          },
+          {
+            "value": "radio",
+            "label": "单选按钮"
+          },
+          {
+            "value": "list",
+            "label": "列表"
+          },
+          {
+            "value": "combo",
+            "label": "下拉选择"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "choices",
+        "label": "列表选项（每行一个）",
+        "default": "",
+        "kind": "multiline",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "fieldValue",
+        "label": "新字段默认值",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "flatten",
+        "label": "导出为不可交互的平面表单",
+        "default": "false",
+        "kind": "toggle",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "填写模式加载已有字段。创建模式在预览中框选位置；自动检测适用于带清晰矩形边框的表单。",
+    "many": false
+  },
+  {
+    "id": "summarize",
+    "name": "AI 摘要",
+    "subtitle": "长篇内容，读到重点。",
+    "icon": "sparkles",
+    "category": "ai",
+    "color": "#598B7D",
+    "options": [
+      {
+        "key": "summaryLength",
+        "label": "摘要长度",
+        "default": "medium",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "short",
+            "label": "精简"
+          },
+          {
+            "value": "medium",
+            "label": "标准"
+          },
+          {
+            "value": "long",
+            "label": "详细"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "language",
+        "label": "摘要语言",
+        "default": "简体中文",
+        "kind": "text",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "提取文字后发送至你配置的 AI 服务。长文分段分析并归并，扫描件自动在本机 OCR。",
+    "many": true
+  },
+  {
+    "id": "translate",
+    "name": "PDF 翻译",
+    "subtitle": "跨越语言，保留信息。",
+    "icon": "character.bubble",
+    "category": "ai",
+    "color": "#768DB7",
+    "options": [
+      {
+        "key": "language",
+        "label": "目标语言",
+        "default": "简体中文",
+        "kind": "text",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "layout",
+        "label": "输出布局",
+        "default": "preserve",
+        "kind": "choice",
+        "choices": [
+          {
+            "value": "preserve",
+            "label": "尽量保留原版面"
+          },
+          {
+            "value": "reflow",
+            "label": "重新排版，完整呈现"
+          }
+        ],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "使用你配置的 AI 服务翻译。复杂版面和扩展较长的译文请检查排版，或使用重新排版模式。",
+    "many": true
+  },
+  {
+    "id": "markdown",
+    "name": "PDF 转 Markdown",
+    "subtitle": "让内容进入你的知识库。",
+    "icon": "text.badge.checkmark",
+    "category": "ai",
+    "color": "#8C9B79",
+    "options": [
+      {
+        "key": "includeImages",
+        "label": "导出图片",
+        "default": "true",
+        "kind": "toggle",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "useOCR",
+        "label": "自动识别扫描页",
+        "default": "false",
+        "kind": "toggle",
+        "choices": [],
+        "help": ""
+      },
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "本地提取标题、段落、表格、链接与图片，无需 AI 服务。",
+    "many": true
+  },
+  {
+    "id": "delete",
+    "name": "删除页面",
+    "subtitle": "去掉多余，留下重要内容。",
+    "icon": "doc.badge.minus",
+    "category": "arrange",
+    "color": "#C17C70",
+    "options": [
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "",
+    "many": true
+  },
+  {
+    "id": "extract",
+    "name": "提取页面",
+    "subtitle": "选出需要的几页另存。",
+    "icon": "doc.on.doc",
+    "category": "arrange",
+    "color": "#BBA070",
+    "options": [
+      {
+        "key": "pages",
+        "label": "页码范围",
+        "default": "",
+        "kind": "text",
+        "choices": [],
+        "help": "留空处理全部；示例：1-3,5。可在缩略图中选择页面。"
+      },
+      {
+        "key": "password",
+        "label": "文件打开密码（如有）",
+        "default": "",
+        "kind": "secret",
+        "choices": [],
+        "help": ""
+      }
+    ],
+    "extensions": [
+      "pdf"
+    ],
+    "hint": "",
+    "many": true
+  }
+]

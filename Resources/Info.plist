@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleName</key>
+	<string>HiPDF</string>
+	<key>CFBundleDisplayName</key>
+	<string>HiPDF</string>
+	<key>CFBundleIdentifier</key>
+	<string>app.hipdf.mac</string>
+	<key>CFBundleExecutable</key>
+	<string>HiPDF</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.1</string>
+	<key>CFBundleVersion</key>
+	<string>2</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>14.0</string>
+	<key>CFBundleIconFile</key>
+	<string>HiPDF.icns</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>HiPDF 可连接你配置的本地 AI 服务及局域网扫描仪。</string>
+	<key>NSCameraUsageDescription</key>
+	<string>用于导入扫描文档。</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_uscan._tcp</string>
+		<string>_scanner._tcp</string>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+	</dict>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>PDF Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.adobe.pdf</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
