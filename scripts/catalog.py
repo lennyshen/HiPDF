@@ -1,0 +1,53 @@
+"""Tool inventory shared by UI and feature coverage checks."""
+import json
+from pathlib import Path
+
+def field(key,label,default='',kind='text',choices=None,help=''):
+    return dict(key=key,label=label,default=str(default),kind=kind,choices=[dict(value=v,label=l) for v,l in (choices or [])],help=help)
+def choice(key,label,default,values): return field(key,label,default,'choice',values)
+P=field('pages','页码范围','','text',help='留空处理全部；示例：1-3,5。可在缩略图中选择页面。')
+PASSWORD=field('password','文件打开密码（如有）','','secret')
+OCR=field('useOCR','自动识别扫描页','false','toggle')
+FONT=field('fontSize','字号（pt）','20','number')
+TEXT=field('text','文字内容','','multiline')
+IMAGE=field('imagePath','选择图片','','file')
+POSITION=choice('position','位置','center',[('top','顶部'),('center','居中'),('bottom','底部')])
+tools=[]
+def add(id,name,subtitle,icon,category,color,opts=(),extensions=('pdf',),hint='',many=True):
+    tools.append(dict(id=id,name=name,subtitle=subtitle,icon=icon,category=category,color=color,options=list(opts),extensions=list(extensions),hint=hint,many=many))
+add('merge','合并 PDF','将多个文件，整理成一份。','square.stack.3d.up','arrange','#E87354',[PASSWORD],hint='按文件队列的顺序合并。使用上下箭头调整顺序，保留原文件。')
+add('split','拆分 PDF','按页面、区间或份数拆分。','scissors','arrange','#E6A348',[choice('splitMode','拆分方式','each',[('each','每页一个文件'),('ranges','每个区间一个文件'),('size','每 N 页一个文件')]),P,field('groupSize','每份页数','1','number'),PASSWORD])
+add('compress','压缩 PDF','减小体积，让分享更轻松。','arrow.down.right.and.arrow.up.left','optimize','#67A481',[choice('compression','压缩程度','balanced',[('lossless','无损优化'),('balanced','推荐压缩'),('strong','更小体积')]),PASSWORD],hint='推荐和强力模式会重新压缩图片；文字保持可搜索。压缩效果取决于源文件。')
+add('pdfToWord','PDF 转 Word','重新获得可编辑的文档。','doc.text','convert','#5187CC',[P,OCR,PASSWORD],hint='生成 DOCX，重建段落和表格。复杂版式转换后请校对。')
+add('pdfToPPT','PDF 转 PowerPoint','将页面变成演示文稿。','rectangle.on.rectangle','convert','#D28350',[choice('pptMode','转换方式','editable',[('editable','重建可编辑文字'),('image','保留整页外观')]),P,OCR,PASSWORD])
+add('pdfToExcel','PDF 转 Excel','提取表格，让数据可用。','tablecells','convert','#549F77',[P,OCR,PASSWORD],hint='每个表格生成独立工作表；没有表格的页面按文字行提取。')
+add('wordToPDF','Word 转 PDF','稳定呈现每一段文字。','doc.text.fill','convert','#5187CC',extensions=('doc','docx','odt','rtf'))
+add('pptToPDF','PowerPoint 转 PDF','让幻灯片随时可读。','rectangle.on.rectangle.angled','convert','#D28350',extensions=('ppt','pptx','odp'))
+add('excelToPDF','Excel 转 PDF','把工作表导出为 PDF。','tablecells.fill','convert','#549F77',extensions=('xls','xlsx','ods','csv'),hint='使用工作簿中的打印区域和页面设置导出。')
+add('edit','编辑 PDF','添加文字、图片和批注。','pencil.and.outline','edit','#8973BE',[choice('editMode','编辑方式','text',[('text','添加文字'),('image','添加图片'),('rectangle','矩形'),('highlight','高亮区域'),('ink','手绘笔迹')]),TEXT,IMAGE,FONT,field('color','颜色','#334155','color'),P,PASSWORD],hint='在预览上拖动框选放置区域；手绘模式直接拖动书写。可连续添加多个区域。')
+add('pdfToImage','PDF 转 JPG','逐页导出，或提取图片。','photo.on.rectangle','convert','#D2A641',[choice('imageMode','导出内容','pages',[('pages','每页转换为图片'),('extract','提取嵌入图片')]),choice('imageFormat','图片格式','jpg',[('jpg','JPG'),('png','PNG')]),field('dpi','分辨率（DPI）','150','number'),P,PASSWORD])
+add('imageToPDF','JPG 转 PDF','图片按你的方式组合。','photo.stack','convert','#D2A641',[choice('paper','纸张','a4',[('a4','A4'),('original','跟随图片尺寸')]),choice('orientation','方向','portrait',[('portrait','纵向'),('landscape','横向')]),field('margin','页边距（pt）','20','number')],extensions=('jpg','jpeg','png','tiff','tif','bmp','webp'),hint='支持 JPG、PNG、TIFF、WebP 等格式，自动校正照片方向。')
+add('sign','PDF 签名','手写、图片或证书签署。','signature','security','#467CB3',[choice('signMode','签名方式','visual',[('visual','签名文字或图片'),('certificate','PKCS#12 数字签名')]),choice('editMode','落笔方式','text',[('text','框选放置'),('ink','在页面上手写')]),field('text','签名文字','','text'),IMAGE,FONT,field('certificate','签名证书（.p12 / .pfx）','','file'),field('certPassword','证书密码','','secret'),field('reason','签名原因','Document approval'),P,PASSWORD],hint='本地签名与证书签名。远程邀请、身份验证和可信时间戳不包含在离线签署中。')
+add('watermark','添加水印','为文档添上专属标识。','drop','edit','#9078B6',[TEXT,IMAGE,POSITION,field('opacity','透明度（0.01–1）','.22','number'),field('fontSize','字号（pt）','36','number'),field('color','文字颜色','#334155','color'),P,PASSWORD])
+add('rotate','旋转 PDF','让每一页回到正确方向。','rotate.right','arrange','#83A8BD',[choice('rotation','旋转角度','90',[('90','顺时针 90°'),('180','180°'),('270','逆时针 90°')]),P,PASSWORD])
+add('htmlToPDF','HTML 转 PDF','把网页保存在本机。','globe','convert','#648EA4',[field('url','网页地址','https://example.com'),choice('paper','纸张','a4',[('a4','A4'),('letter','Letter')]),field('landscape','横向页面','false','toggle')],extensions=('html','htm'),hint='输入网页 URL 或选择 HTML 文件。网页资源按需联网加载，输出自动分页。',many=False)
+add('unlock','PDF 解锁','移除已知密码的保护。','lock.open','security','#70A9A3',[PASSWORD],hint='加密文件需要输入正确的打开密码；不会猜测或破解密码。')
+add('encrypt','PDF 加密','用密码保护重要文件。','lock.shield','security','#70A9A3',[field('newPassword','新的打开密码','','secret'),field('allowPrint','允许打印','true','toggle'),field('allowCopy','允许复制文字','false','toggle'),PASSWORD],hint='使用 AES-256 加密。请妥善保管密码，HiPDF 不保存文档密码。')
+add('organize','排列 PDF','调整页序，重新组织内容。','square.grid.2x2','arrange','#73A8A1',[field('pages','页面顺序','','text',help='例如 3,1,2,2：支持重复页面；留空保留原顺序。'),PASSWORD],hint='按点击缩略图的顺序生成页序，也可以手动输入。可先合并多个文件再排列。')
+add('pdfa','PDF 转 PDF/A','为长期归档准备文档。','archivebox','optimize','#879493',[PASSWORD],hint='按 PDF/A-2b 导出。正式归档前请用 veraPDF 对实际输出独立校验。')
+add('repair','修复 PDF','重建可恢复的文件结构。','wrench.and.screwdriver','optimize','#BC8678',[PASSWORD],hint='重建可读取对象与交叉引用。损坏严重或已经缺失的内容无法保证恢复。')
+add('numbers','添加页码','让长文档更容易查阅。','number.square','edit','#7CA2A9',[field('text','页码格式','{page} / {total}'),field('startNumber','起始页码','1','number'),choice('position','位置','bottom',[('top','顶部'),('bottom','底部')]),field('fontSize','字号（pt）','12','number'),P,PASSWORD],hint='{page} 表示当前编号，{total} 表示所选页数。')
+add('scan','扫描为 PDF','连接扫描仪，或导入照片。','scanner','arrange','#69A398',[choice('scanMode','图像处理','color',[('color','彩色'),('gray','灰度增强'),('bw','黑白文档')]),choice('paper','纸张','a4',[('a4','A4'),('original','跟随图片')]),field('margin','页边距（pt）','15','number')],extensions=('jpg','jpeg','png','tiff','tif','bmp','webp'),hint='支持 macOS 识别的扫描仪；也可导入 iPhone 扫描图片。')
+add('ocr','OCR 文字识别','让扫描件可搜索、可复制。','text.viewfinder','optimize','#659F93',[field('ocrLanguages','识别语言','zh-Hans,en-US','text',help='以逗号分隔，例如 zh-Hans,en-US、ja-JP。'),field('forceOCR','对已有文字的页面也识别','false','toggle'),P,PASSWORD],hint='使用 macOS Vision 离线识别中英文。文字层叠加在原始页面上。')
+add('compare','比较 PDF','并排查看，找出版本变化。','rectangle.split.2x1','security','#718BB2',[PASSWORD],hint='请选择两个文件。输出并排 PDF 和逐行文字差异报告。',many=True)
+add('redact','PDF 标记密文','永久删除敏感文字和区域。','eye.slash','security','#A47B9E',[field('terms','需要删除的文字（每行一项）','','multiline'),P,PASSWORD],hint='在预览上框选区域，或填写需删除的文字。会删除真实内容并清理附件、元数据及隐藏信息，另存为新文件。')
+add('crop','裁剪 PDF','保留你需要的页面区域。','crop','edit','#967BBA',[field('cropMargin','四边裁剪量（pt）','20','number'),field('applyAll','将最后选区应用到所有所选页面','true','toggle'),P,PASSWORD],hint='在预览上拖动选择保留区域；未框选时使用四边裁剪量。裁剪只改变可见范围。')
+add('forms','PDF 表单','创建字段，也能直接填写。','list.bullet.rectangle','edit','#779790',[choice('formMode','操作','fill',[('fill','填写已有表单'),('create','创建字段'),('detect','自动检测边框')]),field('fieldName','新字段名称','字段'),choice('fieldType','字段类型','text',[('text','文本框'),('checkbox','复选框'),('radio','单选按钮'),('list','列表'),('combo','下拉选择')]),field('choices','列表选项（每行一个）','','multiline'),field('fieldValue','新字段默认值',''),field('flatten','导出为不可交互的平面表单','false','toggle'),PASSWORD],hint='填写模式加载已有字段。创建模式在预览中框选位置；自动检测适用于带清晰矩形边框的表单。',many=False)
+add('summarize','AI 摘要','长篇内容，读到重点。','sparkles','ai','#598B7D',[choice('summaryLength','摘要长度','medium',[('short','精简'),('medium','标准'),('long','详细')]),field('language','摘要语言','简体中文'),P,PASSWORD],hint='提取文字后发送至你配置的 AI 服务。长文分段分析并归并，扫描件自动在本机 OCR。')
+add('translate','PDF 翻译','跨越语言，保留信息。','character.bubble','ai','#768DB7',[field('language','目标语言','简体中文'),choice('layout','输出布局','preserve',[('preserve','尽量保留原版面'),('reflow','重新排版，完整呈现')]),P,PASSWORD],hint='使用你配置的 AI 服务翻译。复杂版面和扩展较长的译文请检查排版，或使用重新排版模式。')
+add('markdown','PDF 转 Markdown','让内容进入你的知识库。','text.badge.checkmark','ai','#8C9B79',[field('includeImages','导出图片','true','toggle'),OCR,P,PASSWORD],hint='本地提取标题、段落、表格、链接与图片，无需 AI 服务。')
+add('delete','删除页面','去掉多余，留下重要内容。','doc.badge.minus','arrange','#C17C70',[P,PASSWORD])
+add('extract','提取页面','选出需要的几页另存。','doc.on.doc','arrange','#BBA070',[P,PASSWORD])
+assert len(tools)==33
+root=Path(__file__).resolve().parent.parent
+(root/'Resources/tools.json').write_text(json.dumps(tools,ensure_ascii=False,indent=2))
