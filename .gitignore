@@ -1,0 +1,9 @@
+.build/
+.venv/
+.runtime/
+dist/
+build/
+__pycache__/
+*.pyc
+.DS_Store
+Resources/HiPDF.iconset/
